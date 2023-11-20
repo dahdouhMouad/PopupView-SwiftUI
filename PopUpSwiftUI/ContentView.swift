@@ -8,14 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var isActive: Bool = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ZStack {
+            VStack {
+                Button {
+                    isActive = true
+                } label: {
+                    Text("Click me")
+                        .foregroundColor(.accentColor)
+                }
+            }
+            .padding()
+            
+            if isActive {
+                PopupView(isActive: $isActive, title: "Accès aux contacts", subTitle: "Accès aux contacts", buttonTitle: "OK") {
+                    print("Pop Clicked")
+                }
+            }
         }
-        .padding()
     }
 }
 
